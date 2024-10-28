@@ -28,3 +28,20 @@ variable "subnets" {
   description = "Subnets for the vnet"
   type        = map(list(string))
 }
+
+variable "identity_token" { 
+  type      = string 
+  ephemeral = true
+}
+
+variable "client_id" { 
+  type = string
+}
+
+variable "subscription_id" { 
+  type = string 
+}
+
+variable "tenant_id" { 
+  type = string 
+}
