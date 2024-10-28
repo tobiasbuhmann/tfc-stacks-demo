@@ -16,7 +16,7 @@ module "testvm" {
   admin_username                     = "azureuser"
   disable_password_authentication    = false
   enable_telemetry                   = true
-  encryption_at_host_enabled         = true
+  encryption_at_host_enabled         = false
   generate_admin_password_or_ssh_key = true
   location                           = azurerm_resource_group.main.location
   name                               = local.name
