@@ -16,4 +16,5 @@ deployment "dev" {
             environment = "dev"
             project = local.project
         }
+    }
 }
