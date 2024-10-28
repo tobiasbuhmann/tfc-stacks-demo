@@ -28,6 +28,9 @@ component "vm" {
 
     providers = {
         azurerm = provider.azurerm.this
+        tls = provider.tls.this
+        random = provider.random.this
+        modtm = provider.modtm.this
     }
 }
 

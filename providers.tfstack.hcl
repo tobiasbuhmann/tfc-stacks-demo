@@ -19,6 +19,9 @@ required_providers {
 
 provider "azurerm" "this" {
   config {
-  features {}
+    features {}
   }
 }
+provider "tls" "this" {}
+provider "random" "this" {}
+provider "modtm" "this" {}
