@@ -118,7 +118,29 @@ Again, the solution is to build some custom scripting or automation outside of T
 
 ### Larger State Files
 
-The more stuff you have in the root module, the bigger your state file gets. Old crusty Terraformers live in fear of a state file being corrupted, spelling a bad day for all involved. The actual risk of corruption has dropped preciptously since the pre-1.0 days. Instead, I think the major concern of a large state file is two-fold:
+The more stuff you have in the root module, the bigger your state file gets. Old crusty Terraformers live in fear of a state file being corrupted, spelling a bad day for all involved. The actual risk of corruption has dropped precipitously since the pre-1.0 days. Instead, I think the major concern of a large state file is two-fold:
 
 1. Big state files mean longer state refresh times
-1. Big state files
+1. Big state files mean more people have access to sensitive data
+
+Ideally you want to organize your state to group resources that are tightly coupled together, under management by a single team, and related to infrastructure with a common lifecycle.
+
+When you break up a config, you are also breaking up the underlying state file. This is disruptive to dependency management, resource coupling, and resource references. Terraform only draws a resource graph that spans a single configuration, so it is only aware of dependencies that exist within that config. If you want to express an dependency outside of the configuration, you have to do so through data sources or outside of Terraform altogether. It is much simpler to keep all your resources in a single configuration, but then you have to deal with the problems of a large state file.
+
+### Blast Radius Considerations
+
+The more resources you have in a single configuration, the larger the blast radius if something goes wrong. You typically wouldn't want your shared networking resources to be in the same configuration as the resources for an application. If you did that, you'd need to give both your networking team and application team access to make changes to the config, and that means you application team can break networking for other applications. That seems... bad.
+
+The suggested approach is to organize code by responsibility, lifecycle, and purpose. The code for shared networking resources lives in a repository managed by the networking team. The code for infrastructure that supports application A lives in a repository managed by the application A team.
+
+Creating this separation does require that there is some amount of communication between related configurations. Application A probably need some information from the shared networking configuration, so you need some way of sharing that information and alerting application A when that information changes. The degree to which the two configurations are coupled will determine how you share that information.
+
+Ultimately, reducing blast radius is about grouping resources responsibly, understanding the relationship between resources, and controlling who has access to change those resources.
+
+## What Was I Saying?
+
+Oh yeah, we were talking about Stacks! My original point was that building a complex configuration using the root module model has some drawbacks, and Stacks is one way of dealing with those drawbacks.
+
+Terraform Stacks let you describe a set of components that comprise a stack and deployments that will use the stack to create resources. Think of a component as a layer, or what you would include in a Terraform child module. For an application, the components might be the front-end, backend, and database. A deployment is a single instance of the stack, which could be by environment tier, e.g. dev, prod, and qa. Or by location, e.g. east us, northern europe, and australia. Or both!
+
+Within the stack definition, you can declaratively describe the relationship between components of the stack. 
