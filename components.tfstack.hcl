@@ -47,7 +47,6 @@ component "database" {
     providers = {
         azurerm = provider.azurerm.this
         random = provider.random.this
-        modtm = provider.modtm.this
     }
 
     depends_on = [component.vm]

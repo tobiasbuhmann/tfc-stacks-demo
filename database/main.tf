@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "main" {
 }
 
 module "sql_server" {
-  source  = "Azure/avm-res-dbformysql-flexibleserver/azurerm//examples/default"
+  source  = "Azure/avm-res-dbformysql-flexibleserver/azurerm"
   version = "0.1.0"
 
   name                   = local.name
