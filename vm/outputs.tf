@@ -7,6 +7,6 @@ output "vm_id" {
 }
 
 output "vm_resource" {
-  value = module.testvm.resource
+  value     = module.testvm.resource
   sensitive = true
 }

@@ -3,14 +3,14 @@ locals {
 }
 
 resource "azurerm_resource_group" "main" {
-  name = local.name
-    location = var.location
+  name     = local.name
+  location = var.location
 
-    tags = var.tags
+  tags = var.tags
 }
 
 module "testvm" {
-  source = "Azure/avm-res-compute-virtualmachine/azurerm"
+  source  = "Azure/avm-res-compute-virtualmachine/azurerm"
   version = "0.16.0"
 
   admin_username                     = "azureuser"
@@ -23,7 +23,7 @@ module "testvm" {
   resource_group_name                = azurerm_resource_group.main.name
   os_type                            = "Linux"
   sku_size                           = var.vm_sku_size
-  zone = var.vm_zone
+  zone                               = var.vm_zone
 
 
   network_interfaces = {

@@ -21,13 +21,13 @@ variable "tags" {
 variable "vm_sku_size" {
   description = "Size of the VM"
   type        = string
-  default = "Standard_B1s"
+  default     = "Standard_B1s"
 }
 
 variable "vm_zone" {
   description = "Zone for the VM"
   type        = string
-  default = "1"
+  default     = "1"
 }
 
 variable "vm_subnet_id" {
