@@ -7,7 +7,7 @@ resource "azurerm_resource_group" "main" {
   location = var.location
 }
 
-module "avm-res-sql-server" {
+module "sql_server" {
   source  = "Azure/avm-res-sql-server/azurerm"
   version = "0.1.1"
 
