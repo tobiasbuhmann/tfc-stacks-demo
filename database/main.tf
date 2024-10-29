@@ -2,13 +2,6 @@ locals {
   name = "${var.prefix}-db-${var.suffix}"
 }
 
-resource "azurerm_resource_group" "main" {
-  name = local.name
-    location = var.location
-
-    tags = var.tags
-}
-
 module "sql_database" {
   source              = "Azure/database/azurerm"
   resource_group_name = azurerm_resource_group.main.name
