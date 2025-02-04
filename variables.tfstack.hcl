@@ -29,7 +29,7 @@ variable "subnets" {
   type        = map(list(string))
 }
 
-variable "identity_token" { 
+/*variable "identity_token" { 
   type      = string 
   ephemeral = true
 }
@@ -43,5 +43,5 @@ variable "subscription_id" {
 }
 
 variable "tenant_id" { 
-  type = string 
-}
+  type = string
+}*/
