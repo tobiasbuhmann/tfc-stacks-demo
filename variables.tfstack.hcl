@@ -1,7 +1,6 @@
 variable "location" {
   description = "Location for the resources"
   type        = string
-  default = "eastus"
 }
 
 variable "prefix" {
@@ -29,13 +28,13 @@ variable "subnets" {
   type        = map(list(string))
 }
 
-/*variable "identity_token" { 
-  type      = string 
-  ephemeral = true
-}
-
 variable "client_id" { 
   type = string
+}
+
+variable "client_secret" { 
+  type = string
+  sensitive = true
 }
 
 variable "subscription_id" { 
@@ -44,4 +43,4 @@ variable "subscription_id" {
 
 variable "tenant_id" { 
   type = string
-}*/
+}
